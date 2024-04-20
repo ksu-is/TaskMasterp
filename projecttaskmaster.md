@@ -1,5 +1,6 @@
 import tkinter
 import tkinter.messagebox
+import pickle
 
 root = tkinter.Tk()
 root.title("Taskmaster")
@@ -25,10 +26,17 @@ def delete_task():
 
 
 def load_tasks():
-    pass
+    try:
+        tasks = pickle.load(open("tasks.dat", "rb"))
+        listbox_tasks.delete(0, tkinter.END)
+        for task in tasks:
+            listbox_tasks.insert(tkinter.END, task)
+    except:
+         tkinter.messagebox.showwarning(title= "Warning!", message="Cannot find tasks.dat")
 
 def save_tasks():
-    pass
+    tasks = listbox_tasks.get(0, listbox_tasks.size())
+    pickle.dump(tasks, open("tasks.dat", "wb"))
 
 # Create GUI
 frame_tasks = tkinter.Frame(root)
