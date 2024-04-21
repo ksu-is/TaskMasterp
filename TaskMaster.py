@@ -5,10 +5,6 @@ import pickle
 root = tkinter.Tk()
 root.title("Taskmaster")
 
-
-
-
-
 def add_task():
     task = entry_task.get()
     if task != "":
@@ -24,7 +20,6 @@ def delete_task():
     except:
          tkinter.messagebox.showwarning(title= "Warning!", message="You must select a task")
 
-
 def load_tasks():
     try:
         tasks = pickle.load(open("tasks.dat", "rb"))
@@ -34,13 +29,12 @@ def load_tasks():
     except:
          tkinter.messagebox.showwarning(title= "Warning!", message="Cannot find tasks.dat")
 
-
 def save_tasks():
     tasks = listbox_tasks.get(0, listbox_tasks.size())
     
     pickle.dump(tasks, open("tasks.dat", "wb"))
 
-# Create GUI
+# CREATE GUI
 frame_tasks = tkinter.Frame(root)
 frame_tasks.pack()       
 listbox_tasks = tkinter.Listbox(frame_tasks, height=10, width=50)
